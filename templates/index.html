@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Agriculture Dashboard</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Hooks -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <header class="dashboard-header">
+            <div class="logo">
+                <i class="fa-solid fa-leaf"></i>
+                <h1>AgriSmart Dashboard</h1>
+            </div>
+            <div class="header-status">
+                <span class="pulse-indicator"></span> System Online
+            </div>
+        </header>
+
+        <!-- Alerts & Predictions Area -->
+        <div id="alert-banner" class="alert-banner hidden">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span id="alert-message">No active alerts</span>
+        </div>
+        
+        <div id="prediction-banner" class="prediction-banner">
+            <i class="fa-solid fa-cloud-sun"></i>
+            <span id="prediction-message">Loading predictions...</span>
+        </div>
+
+        <main class="dashboard-grid">
+            <!-- Sensor Cards -->
+            <div class="card sensor-card">
+                <div class="card-icon temp-icon"><i class="fa-solid fa-temperature-half"></i></div>
+                <div class="card-content">
+                    <h3>Temperature</h3>
+                    <div class="value-display">
+                        <span id="temp-val">--</span> <span class="unit">°C</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card sensor-card">
+                <div class="card-icon hum-icon"><i class="fa-solid fa-droplet"></i></div>
+                <div class="card-content">
+                    <h3>Humidity</h3>
+                    <div class="value-display">
+                        <span id="hum-val">--</span> <span class="unit">%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card sensor-card" id="soil-card">
+                <div class="card-icon soil-icon"><i class="fa-solid fa-seedling"></i></div>
+                <div class="card-content">
+                    <h3>Soil Moisture</h3>
+                    <div class="value-display">
+                        <span id="soil-val">--</span> <span class="unit">%</span>
+                    </div>
+                    <div class="health-status" id="health-status">
+                        Status: <span id="health-text">Good</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weather Card -->
+            <div class="card weather-card">
+                <h3>Weather Overview (<span id="weather-city">Location</span>)</h3>
+                <div class="weather-info">
+                    <div class="weather-main">
+                        <i id="weather-icon" class="fa-solid fa-sun fa-2x"></i>
+                        <span id="weather-condition">--</span>
+                    </div>
+                    <div class="weather-temp">
+                        <span id="weather-temp-val">--</span>°C
+                    </div>
+                </div>
+            </div>
+
+            <!-- Irrigation Control Card -->
+            <div class="card irrigation-card">
+                <h3>Irrigation System</h3>
+                <div class="irrigation-state">
+                    Status: <strong id="irrigation-status-text" class="status-off">OFF</strong>
+                </div>
+                <div class="irrigation-mode">
+                    Mode: <span id="irrigation-mode-text">AUTO</span>
+                </div>
+                <div class="irrigation-controls">
+                    <button class="btn btn-primary" id="btn-auto">Auto Mode</button>
+                    <button class="btn btn-success" id="btn-on">Force ON</button>
+                    <button class="btn btn-danger" id="btn-off">Force OFF</button>
+                </div>
+            </div>
+
+            <!-- Graphs Card -->
+            <div class="card chart-card">
+                <h3>Historical Data (Last 10 Readings)</h3>
+                <div class="chart-container">
+                    <canvas id="historyChart"></canvas>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom JS -->
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

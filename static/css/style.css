@@ -1,0 +1,279 @@
+/* Base Styles & Variables */
+:root {
+    --bg-color: #f4f7f6;
+    --text-main: #333;
+    --text-muted: #666;
+    --card-bg: #ffffff;
+    --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    
+    --primary: #4361ee;
+    --success: #2ec4b6;
+    --warning: #ffb703;
+    --danger: #e63946;
+    
+    --font-stack: 'Inter', sans-serif;
+    --border-radius: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-stack);
+    background-color: var(--bg-color);
+    color: var(--text-main);
+}
+
+/* Dashboard Layout */
+.dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0 30px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--success);
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.header-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: var(--success);
+    background: #e6fcf5;
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+.pulse-indicator {
+    width: 10px;
+    height: 10px;
+    background-color: var(--success);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(46, 196, 182, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(46, 196, 182, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(46, 196, 182, 0); }
+}
+
+/* Banners */
+.alert-banner, .prediction-banner {
+    padding: 15px 20px;
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    box-shadow: var(--card-shadow);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.alert-banner {
+    background-color: #ffe3e3;
+    color: var(--danger);
+    border-left: 5px solid var(--danger);
+}
+
+.prediction-banner {
+    background-color: #e7f5ff;
+    color: var(--primary);
+    border-left: 5px solid var(--primary);
+}
+
+/* Grid Layout */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+/* Cards */
+.card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+}
+
+/* Sensor Cards Specifics */
+.sensor-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    color: white;
+}
+
+.temp-icon { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); color: #e63946; }
+.hum-icon { background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); color: #1d3557; }
+.soil-icon { background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%); color: #2d6a4f; }
+
+.value-display {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+.unit {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.health-status {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.status-good { color: var(--success); }
+.status-warning { color: var(--warning); }
+.status-critical { color: var(--danger); }
+
+/* Weather Card */
+.weather-card h3 {
+    margin-bottom: 15px;
+    color: var(--text-muted);
+}
+.weather-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.weather-main {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.weather-temp {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* Irrigation Control Card */
+.irrigation-card {
+    grid-column: span 2;
+}
+
+.irrigation-card h3 {
+    margin-bottom: 15px;
+    color: var(--text-muted);
+}
+
+.irrigation-state {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.irrigation-mode {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.status-on { color: var(--success); }
+.status-off { color: var(--text-main); }
+
+.irrigation-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: opacity 0.2s, background-color 0.2s;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.btn-primary { background-color: var(--primary); color: white; }
+.btn-success { background-color: var(--success); color: white; }
+.btn-danger { background-color: var(--danger); color: white; }
+
+/* Chart Card */
+.chart-card {
+    grid-column: span 3;
+}
+
+.chart-card h3 {
+    margin-bottom: 20px;
+    color: var(--text-muted);
+}
+
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .irrigation-card, .chart-card {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    .irrigation-card, .chart-card {
+        grid-column: span 1;
+    }
+}
